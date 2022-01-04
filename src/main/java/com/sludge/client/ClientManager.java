@@ -82,9 +82,7 @@ public class ClientManager {
                     .connect(address, port);
             try {
                 channel = connect.sync().channel();
-                channel.closeFuture().addListener(promise -> {
-                    loopGroup.shutdownGracefully();
-                });
+                channel.closeFuture().addListener(promise -> loopGroup.shutdownGracefully());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
